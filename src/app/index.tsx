@@ -1,5 +1,6 @@
 import { Alert, StyleSheet, Text, View } from "react-native";
 
+import Contenedor from "@/components/contenedor";
 import Documentos from "@/components/documentos";
 import Publicaciones from "@/components/publicaciones";
 import TarjetaCameo from "@/components/tarjetacameo";
@@ -63,22 +64,24 @@ export default function HomeScreen() {
           )
         }
       />
-      <Publicaciones
-        title="Product Designer Senior"
-        location="La Paz · Híbrido"
-        status="Publicada"
-        iconLabel="P"
-        onEdit={() =>
-          Alert.alert("Editar publicación", "Product Designer Senior")
-        }
-      />
-      <Publicaciones
-        title="UX Researcher"
-        location="Remoto"
-        status="Borrador"
-        iconLabel="U"
-        onEdit={() => Alert.alert("Editar publicación", "UX Researcher")}
-      />
+      <Contenedor title="Mis publicaciones">
+        <Publicaciones
+          title="Product Designer Senior"
+          location="La Paz · Híbrido"
+          status="Publicada"
+          iconLabel="P"
+          onEdit={() =>
+            Alert.alert("Editar publicación", "Product Designer Senior")
+          }
+        />
+        <Publicaciones
+          title="UX Researcher"
+          location="Remoto"
+          status="Borrador"
+          iconLabel="U"
+          onEdit={() => Alert.alert("Editar publicación", "UX Researcher")}
+        />
+      </Contenedor>
     </View>
   );
 }
