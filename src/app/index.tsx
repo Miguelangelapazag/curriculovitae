@@ -1,32 +1,58 @@
-import { StyleSheet } from "react-native";
+import { PublicationsList } from "@/components/organisms/PublicationsList";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import { ThemedText } from "@/components/themed-text";
+const publications = [
+  {
+    id: 1,
+    title: "Product Designer Senior",
+    location: "La Paz",
+    modality: "Híbrido",
+    status: "publicada",
+  },
+  {
+    id: 2,
+    title: "Frontend Developer",
+    location: "Santa Cruz",
+    modality: "Remoto",
+    status: "publicada",
+  },
+  {
+    id: 3,
+    title: "Analista BI",
+    location: "Cochabamba",
+    modality: "Híbrido",
+    status: "publicada",
+  },
+] as const;
 
-// function getDevMenuHint() {
-//   if (Platform.OS === "web") {
-//     return <ThemedText type="small">use browser devtools</ThemedText>;
-//   }
-//   if (Device.isDevice) {
-//     return (
-//       <ThemedText type="small">
-//         shake device or press <ThemedText type="code">m</ThemedText> in terminal
-//       </ThemedText>
-//     );
-//   }
-//   const shortcut = Platform.OS === "android" ? "cmd+m (or ctrl+m)" : "cmd+d";
-//   return (
-//     <ThemedText type="small">
-//       press <ThemedText type="code">{shortcut}</ThemedText>
-//     </ThemedText>
-//   );
-// }
+export default function Index() {
+  return (
+    <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
+      <Text style={styles.eyebrow}>ATRACCIÓN DE TALENTO</Text>
+      <Text style={styles.title}>Vacantes</Text>
+      <Text style={styles.subtitle}>
+        Publica oportunidades y gestiona su alcance.
+      </Text>
 
-export default function HomeScreen() {
-  return <ThemedText style={styles.titulo}>holaaa</ThemedText>;
+      <View style={{ height: 24 }} />
+
+      <PublicationsList
+        publications={[...publications]}
+        onEdit={(p) => console.log("Editar", p.id)}
+      />
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
-  titulo: {
-    color: "red",
+  screen: { flex: 1, backgroundColor: "#F7F8FC" },
+  content: { padding: 20, paddingTop: 60 },
+  eyebrow: {
+    fontSize: 12,
+    fontWeight: "700",
+    letterSpacing: 1.5,
+    color: "#3B5BFF",
   },
+  title: { fontSize: 32, color: "#0F1230", marginTop: 4 },
+  subtitle: { fontSize: 15, color: "#6B7280", marginTop: 4 },
 });
