@@ -13,6 +13,9 @@ export default function TabLayout() {
       <Link href="/explore">
         <ThemedText style={styles.titulo}> explore </ThemedText>
       </Link>
+      <Link href="/reclutador/perfiles">
+        <ThemedText style={styles.titulo}> perfiles </ThemedText>
+      </Link>
       <Stack
         screenOptions={{
           headerShown: false,

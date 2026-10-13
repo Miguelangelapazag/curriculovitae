@@ -1,32 +1,21 @@
-import { StyleSheet } from "react-native";
+import { router } from "expo-router";
+import { Button, StyleSheet, View } from "react-native";
 
-import { ThemedText } from "@/components/themed-text";
-
-// function getDevMenuHint() {
-//   if (Platform.OS === "web") {
-//     return <ThemedText type="small">use browser devtools</ThemedText>;
-//   }
-//   if (Device.isDevice) {
-//     return (
-//       <ThemedText type="small">
-//         shake device or press <ThemedText type="code">m</ThemedText> in terminal
-//       </ThemedText>
-//     );
-//   }
-//   const shortcut = Platform.OS === "android" ? "cmd+m (or ctrl+m)" : "cmd+d";
-//   return (
-//     <ThemedText type="small">
-//       press <ThemedText type="code">{shortcut}</ThemedText>
-//     </ThemedText>
-//   );
-// }
-
-export default function HomeScreen() {
-  return <ThemedText style={styles.titulo}>holaaa</ThemedText>;
+export default function Index() {
+  return (
+    <View style={styles.container}>
+      <Button
+        title="Ir a perfiles"
+        onPress={() => router.push("/reclutador/perfiles")}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  titulo: {
-    color: "red",
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
