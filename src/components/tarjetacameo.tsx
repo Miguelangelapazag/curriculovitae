@@ -12,6 +12,7 @@ type TarjetaCameoProps = {
   value: string | number
   icon: ReactNode
   trend?: string
+  iconBackground?: string
   style?: StyleProp<ViewStyle>
 }
 
@@ -20,11 +21,14 @@ export default function TarjetaCameo({
   value,
   icon,
   trend,
+  iconBackground = '#EAF0FF',
   style,
 }: TarjetaCameoProps) {
   return (
     <View style={[styles.container, style]}>
-      <View style={styles.iconContainer}>{icon}</View>
+      <View style={[styles.iconContainer, { backgroundColor: iconBackground }]}>
+        {icon}
+      </View>
 
       <View style={styles.content}>
         <View style={styles.textContainer}>
@@ -65,7 +69,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 14,
-    backgroundColor: '#EAF0FF',
     borderRadius: 12,
   },
   content: {

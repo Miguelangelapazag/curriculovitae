@@ -72,7 +72,8 @@ export default function Publicaciones({
 const styles = StyleSheet.create({
   card: {
     width: '100%',
-    padding: 12,
+    paddingHorizontal: 0,
+    paddingVertical: 12,
     backgroundColor: '#FFFFFF',
     borderRadius: 14,
   },
@@ -124,7 +125,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   editButton: {
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
+    marginLeft: 54,
     marginTop: 12,
     paddingHorizontal: 16,
     paddingVertical: 4,

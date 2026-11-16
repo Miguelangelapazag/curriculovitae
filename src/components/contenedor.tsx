@@ -10,6 +10,7 @@ import {
 type ContenedorProps = {
   eyebrow?: string
   title: string
+  badge?: string
   children: ReactNode
   style?: StyleProp<ViewStyle>
 }
@@ -17,6 +18,7 @@ type ContenedorProps = {
 export default function Contenedor({
   eyebrow = 'PORTAFOLIO',
   title,
+  badge,
   children,
   style,
 }: ContenedorProps) {
@@ -25,7 +27,14 @@ export default function Contenedor({
   return (
     <View style={[styles.container, style]}>
       <Text style={styles.eyebrow}>{eyebrow}</Text>
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.heading}>
+        <Text style={styles.title}>{title}</Text>
+        {badge ? (
+          <View style={styles.badge}>
+            <Text style={styles.badgeText}>{badge}</Text>
+          </View>
+        ) : null}
+      </View>
 
       <View style={styles.items}>
         {items.map((item, index) => (
@@ -58,12 +67,31 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   title: {
+    flex: 1,
     marginTop: 6,
-    marginBottom: 18,
+    marginBottom: 0,
     color: '#17243B',
     fontSize: 18,
     fontWeight: '500',
     lineHeight: 24,
+  },
+  heading: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 18,
+  },
+  badge: {
+    marginLeft: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    backgroundColor: '#FFF3DC',
+    borderRadius: 14,
+  },
+  badgeText: {
+    color: '#A85A00',
+    fontSize: 10,
+    fontWeight: '600',
   },
   items: {
     width: '100%',

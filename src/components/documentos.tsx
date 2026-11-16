@@ -89,14 +89,13 @@ export default function Documentos({
 const styles = StyleSheet.create({
   card: {
     width: '100%',
-    paddingHorizontal: 11,
-    paddingVertical: 9,
+    paddingHorizontal: 0,
+    paddingVertical: 4,
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
   },
   category: {
-    marginLeft: 49,
-    marginBottom: 7,
+    marginLeft: 50,
+    marginBottom: 6,
     color: '#101828',
     fontSize: 12,
     fontWeight: '600',

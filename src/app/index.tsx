@@ -1,100 +1,116 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from 'react-native'
 
-import Contenedor from "@/components/contenedor";
-import Documentos from "@/components/documentos";
-import Publicaciones from "@/components/publicaciones";
-import TarjetaCameo from "@/components/tarjetacameo";
-import { ThemedText } from "@/components/themed-text";
+import AppShell from '@/components/app-shell'
+import Contenedor from '@/components/contenedor'
+import Documentos from '@/components/documentos'
+import TarjetaCameo from '@/components/tarjetacameo'
+import ActionButton from '@/components/action-button'
 
-// function getDevMenuHint() {
-//   if (Platform.OS === "web") {
-//     return <ThemedText type="small">use browser devtools</ThemedText>;
-//   }
-//   if (Device.isDevice) {
-//     return (
-//       <ThemedText type="small">
-//         shake device or press <ThemedText type="code">m</ThemedText> in terminal
-//       </ThemedText>
-//     );
-//   }
-//   const shortcut = Platform.OS === "android" ? "cmd+m (or ctrl+m)" : "cmd+d";
-//   return (
-//     <ThemedText type="small">
-//       press <ThemedText type="code">{shortcut}</ThemedText>
-//     </ThemedText>
-//   );
-// }
-
-export default function HomeScreen() {
+export default function SupervisionScreen() {
   return (
-    <View style={styles.contenedor}>
-      <ThemedText style={styles.titulo}>holaaa</ThemedText>
-      <TarjetaCameo
-        title="Usuarios activos"
-        value="2.438"
-        icon={<Text style={styles.icono}>👥</Text>}
-        trend="+8,4% este mes"
+    <AppShell activeRoute="supervision">
+      <View style={styles.heading}>
+        <Text style={styles.eyebrow}>CENTRO DE CONTROL</Text>
+        <Text style={styles.title}>Supervisión de la plataforma</Text>
+        <Text style={styles.subtitle}>
+          Revisa actividad, reportes y documentos pendientes.
+        </Text>
+      </View>
+
+      <ActionButton
+        label="Exportar reporte"
+        icon="▯"
+        variant="secondary"
+        onPress={() => Alert.alert('Exportar reporte', 'El reporte está listo para exportar.')}
       />
-      <TarjetaCameo
-        title="Nuevos clientes"
-        value="128"
-        icon={<Text style={styles.icono}>✨</Text>}
-        trend="+5% este mes"
-      />
-      <Documentos
-        category="Diplomado"
-        title="UX Research"
-        author="Camila Mendoza"
-        institution="UPB"
-        onViewFile={() => Alert.alert("Ver archivo", "UX Research")}
-        onApprove={() =>
-          Alert.alert("Aprobar documento", "UX Research está listo para aprobar.")
-        }
-      />
-      <Documentos
-        category="Certificado"
-        title="Diseño de experiencia"
-        author="Andrés Pérez"
-        institution="Universidad de Antioquia"
-        onViewFile={() => Alert.alert("Ver archivo", "Diseño de experiencia")}
-        onApprove={() =>
-          Alert.alert(
-            "Aprobar documento",
-            "Diseño de experiencia está listo para aprobar.",
-          )
-        }
-      />
-      <Contenedor title="Mis publicaciones">
-        <Publicaciones
-          title="Product Designer Senior"
-          location="La Paz · Híbrido"
-          status="Publicada"
-          iconLabel="P"
-          onEdit={() =>
-            Alert.alert("Editar publicación", "Product Designer Senior")
+
+      <View style={styles.metrics}>
+        <TarjetaCameo
+          title="Usuarios activos"
+          value="2.438"
+          icon={<Text style={[styles.metricIcon, { color: '#315EFB' }]}>♙</Text>}
+          iconBackground="#EAF0FF"
+          trend="+8,4% este mes"
+        />
+        <TarjetaCameo
+          title="Por verificar"
+          value="24"
+          icon={<Text style={[styles.metricIcon, { color: '#00A99D' }]}>▯</Text>}
+          iconBackground="#E2FAF7"
+          trend="6 requieren atención"
+        />
+        <TarjetaCameo
+          title="Vacantes activas"
+          value="186"
+          icon={<Text style={[styles.metricIcon, { color: '#8354FF' }]}>▱</Text>}
+          iconBackground="#F0EAFE"
+          trend="21 publicadas hoy"
+        />
+        <TarjetaCameo
+          title="Reportes abiertos"
+          value="5"
+          icon={<Text style={[styles.metricIcon, { color: '#FF5868' }]}>⌁</Text>}
+          iconBackground="#FFF0F1"
+          trend="2 de prioridad inmediata"
+        />
+      </View>
+
+      <Contenedor
+        eyebrow="VERIFICACIÓN"
+        title="Documentos pendientes"
+        badge="24 pendientes"
+        style={styles.panel}
+      >
+        <Documentos
+          category="Diplomado"
+          title="UX Research"
+          author="Camila Mendoza"
+          institution="UPB"
+          onViewFile={() => Alert.alert('Ver archivo', 'UX Research')}
+          onApprove={() =>
+            Alert.alert('Aprobar documento', 'UX Research está listo para aprobar.')
           }
         />
-        <Publicaciones
-          title="UX Researcher"
-          location="Remoto"
-          status="Borrador"
-          iconLabel="U"
-          onEdit={() => Alert.alert("Editar publicación", "UX Researcher")}
-        />
       </Contenedor>
-    </View>
-  );
+    </AppShell>
+  )
 }
 
 const styles = StyleSheet.create({
-  contenedor: {
-    padding: 16,
+  heading: {
+    marginBottom: 22,
+  },
+  eyebrow: {
+    color: '#315EFB',
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 1.4,
+    lineHeight: 16,
+  },
+  title: {
+    marginTop: 6,
+    color: '#14213A',
+    fontSize: 27,
+    fontWeight: '400',
+    letterSpacing: -1,
+    lineHeight: 34,
+  },
+  subtitle: {
+    marginTop: 5,
+    color: '#61738C',
+    fontSize: 13,
+    lineHeight: 19,
+  },
+  metrics: {
     gap: 12,
+    marginTop: 28,
+    marginBottom: 16,
   },
-  titulo: {
-    color: "red",
+  metricIcon: {
+    fontSize: 22,
+    lineHeight: 27,
   },
-  icono: {
-    fontSize: 20,
+  panel: {
+    marginBottom: 24,
   },
-});
+})
